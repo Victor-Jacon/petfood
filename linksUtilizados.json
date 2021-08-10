@@ -1,0 +1,7 @@
+{
+  "PetFood - Parte 1" : 
+  {
+    "Mudei meu código mas no emulador continua aparecendo a versão anterior do código, o que eu faço?": "Isso acontece por causa do cache. Aperta ctrl+shift+r ao invés de F5 que vai atualizar certinho",
+    "O que faz a classe mb do bootstrap?": "Só mexe no margin-bottom mesmo, mais nada. - https://stackoverflow.com/questions/51832083/how-to-understand-mb-5-class-attribute-in-bootstrap/51832522"
+  }
+}

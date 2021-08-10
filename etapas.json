@@ -1,0 +1,17 @@
+{
+    "Commit 1":
+    [
+        "Apagar arquivos desnecessários - deixa só o index.js, e no index.js, troca de App para Cadastro, ou a página que vc for começar a codar",
+        "Importar bootstrap (index.html) - https://www.bootstrapcdn.com/",
+        "Css basicão: height, overflow-x, font-family, letter-spacing (global.css)",
+        "Importar fontes usadas (global.css) - https://fonts.google.com/specimen/Open+Sans",
+        "Criei a variavel --primary + .bg-primary",
+        "Implementei container-fluid - https://getbootstrap.com/docs/5.0/layout/containers/",
+        "Implementei h-100 no index.html + componente cadastro - https://getbootstrap.com/docs/4.0/utilities/sizing/",
+        "Implementei col-12 e col-6 - https://getbootstrap.com/docs/4.0/layout/grid/",
+        "Implementei form-control - https://getbootstrap.com/docs/4.3/components/forms/",
+        "Implementei img-fluid - https://getbootstrap.com/docs/4.0/content/images/",
+        "Implementei o input com código padrão do silvio",
+        "Implementei o botão do bootstrap e sobreescrevi o estilo dele, pra isso, basta chamar a classe, e estilizar, normal, que ele já sobreescreve."
+    ]
+}
