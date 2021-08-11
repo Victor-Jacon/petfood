@@ -1,0 +1,50 @@
+.product {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.product img {
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 20px;
+  max-height: 210px;
+  width: 100%;
+}
+
+.product .badge {
+  margin-bottom: 0;
+}
+
+.product small {
+  margin-top: 0;
+  line-height: 15px;
+  display: block;
+}
+
+
+/* Tive que resetar o estilo do bootstrap pra cada estado do botão, pq ele perdia o formato de círculo */
+.product button, .product button:active,
+.product button:hover, .product button:not(:hover),
+.product button:disabled
+{
+/* A classe rounded circle não funcionou, então fiz o círculo na mão. */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  /* Centralizar o sinal de + */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Posicionar em cima do card*/
+  position: absolute;
+  top: 55%;
+  right: 10%;
+  font-size: 25px;
+  /* margin-top: 155px; */
+  padding: 1px 12px; /* Isso tb ajuda a centralizar o sinal de + dentro do botão */
+}
+
+/* @Responsivo - O botão de + fica posicionado errado no responsivo. */

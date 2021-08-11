@@ -4,5 +4,10 @@
     "Mudei meu código mas no emulador continua aparecendo a versão anterior do código, o que eu faço?": "Isso acontece por causa do cache. Aperta ctrl+shift+r ao invés de F5 que vai atualizar certinho",
     "O que faz a classe mb do bootstrap?": "Só mexe no margin-bottom mesmo, mais nada. - https://stackoverflow.com/questions/51832083/how-to-understand-mb-5-class-attribute-in-bootstrap/51832522",
     "Quais são as opções de espaçamento que o bootstrap dá?": "A sintaxe não é mb-pixels, entenda mais no link. - https://getbootstrap.com/docs/5.0/utilities/spacing/"
+  },
+  "Petfood - Parte 2":
+  {
+    "Quero colocar estrela, home e outros icones no meu projeto, como eu faço?": "Usa material design icons, instala com npm/yarn ou importa pelo css no arquivo index.html do seu projeto react. - Fonte: https://dev.materialdesignicons.com/getting-started/webfont",
+    "Quero converter meu hexadecimal para rgb, onde eu vou?": "https://www.rapidtables.com/convert/color/hex-to-rgb.html"
   }
 }

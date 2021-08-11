@@ -25,7 +25,7 @@
   border-radius: 50%;
 
   /* Achei que ficou bonito assim, tb tá diferente */
-  background-color: var(--secondary);
+  background-color: rgb(var(--secondary));
   border-color: transparent;
   color: white;
 }
