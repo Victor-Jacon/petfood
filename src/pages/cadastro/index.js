@@ -6,12 +6,12 @@ const Cadastro = () => {
   return (
     <div className="container-fluid h-100 bg-primary">
       <Header whiteVersion />
-      <div className="row">
-        <div className="col-6 text-right my-auto">
+      <div className="row content-cadastro">
+        <div className="col-6 text-right my-auto content-img">
           <img src={Illustration} className="img-fluid" alt="Ilustração do PetFood" />
         </div>
 
-        <div className="col-6">
+        <div className="col-6 content-form">
           <div className="box col-8">
             <h2 className="text-center mb-3">Falta pouco para fazer o seu pet feliz</h2>
             <input type="text" className="form-control form-control-lg mb-3" placeholder="Nome Completo"/>

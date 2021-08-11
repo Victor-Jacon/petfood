@@ -1,0 +1,11 @@
+.section-title {
+  padding-bottom: 7px;
+  margin: 20px 0;
+  display: inline-block;
+  border-bottom: 2px solid var(--primary);
+}
+
+.box-sidebar {
+  max-height: 500px;
+  overflow-y: auto; /* Cria uma barra de rolagem exclusiva para a nova div sidebar, ou seja, nosso navegador tem uma barra de rolagem dele, e esta div tem uma barra de rolagem dela.*/
+}

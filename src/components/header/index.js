@@ -5,7 +5,7 @@ import LogoWhite from '../../assets/logo-white.png'
 const Header = ({ whiteVersion }) => {
   return (
     <div className="col-12">
-      <header>
+      <header className="py-4 px-4 text-center"> {/* py/px = padding eixo x + eixo y */}
         <img src={whiteVersion ? LogoWhite : Logo } className="img-fluid" alt="Logo do PetFood" />
       </header>
     </div>

@@ -1,27 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 
 :root {
-    --primary: #06d6a0;
-    --secondary: #FA643D;
+  --primary: #06d6a0;
+  --secondary: #FA643D;
 }
 
 html, body {
-    height: 100%;
-    overflow-x: hidden;
-    font-family: 'Open Sans';
-    letter-spacing: -0.03em;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Open Sans';
+  letter-spacing: -0.03em;
 }
 
 .bg-primary {
-    background-color: var(--primary) !important; /* Usei o important pq o bootstrap já tem uma variavel com nome primary, então eu uso important pra passar por cima da configuração do boostrap. */
+  background-color: var(--primary) !important; /* Usei o important pq o bootstrap já tem uma variavel com nome primary, então eu uso important pra passar por cima da configuração do boostrap. */
 }
 
 .box {
-    background: white;
-    box-shadow: 0px 0px 11px 6px rgba(0,0,0,0.08);
-    border-radius: 5px;
-    display: inline-block; /* Faz o item não ocupar o width inteiro , o form fica menorzinho*/
-    padding: 50px;
+  background: white;
+  box-shadow: 0px 0px 11px 6px rgba(0,0,0,0.08);
+  border-radius: 5px;
+  display: inline-block; /* Faz o item não ocupar o width inteiro , o form fica menorzinho*/
+  padding: 50px;
 }
 
 input[type="text"],
@@ -47,6 +47,20 @@ input[type="date"]:disabled {
 
 .btn {
   font-size: 15px;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:disabled,
+.btn-primary:hover {
+  background-color: var(--primary) !important;
+  border-color: var(--primary);
+  width: 100%; /* Não funcionou igual o tutorial, então meti um width 100% */
 }
 
 .bg-secondary {

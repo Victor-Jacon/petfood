@@ -1,0 +1,31 @@
+.product-list {
+  margin-top: 10px;
+}
+
+.product-list .badge {
+  margin-bottom: 0;
+}
+
+.product-list img {
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.product-list small {
+  margin-top: 0;
+  line-height: 15px;
+  display: block;
+}
+
+/* A classe rounded circle do bootstrap não pegou no meu botão redondo da lista de produtos, então fiz deste jeito */
+.product-list button {
+  width: 25px; 
+  height: 25px;
+  border-radius: 50%;
+
+  /* Achei que ficou bonito assim, tb tá diferente */
+  background-color: var(--secondary);
+  border-color: transparent;
+  color: white;
+}
