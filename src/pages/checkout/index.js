@@ -6,7 +6,7 @@ import Product from '../../components/product/list'
 const Checkout = () => {
   return (
     <div className="h-100">
-      <Header />
+      <Header hideCart/>
       <div className="container mt-4">
         <div className="row">
           <div className="col-6">
@@ -72,7 +72,7 @@ const Checkout = () => {
               
               <h4>Minha sacola (5)</h4>
               <div className="row products">
-                {[1,2,3,4,5,6,7,8,9].map((p => 
+                {[1,2,3,4,5,6,7,8,9].map((p) => (
                 <Product />
                 ))}
               </div>

@@ -8,6 +8,11 @@
   "Petfood - Parte 2":
   {
     "Quero colocar estrela, home e outros icones no meu projeto, como eu faço?": "Usa material design icons, instala com npm/yarn ou importa pelo css no arquivo index.html do seu projeto react. - Fonte: https://dev.materialdesignicons.com/getting-started/webfont",
-    "Quero converter meu hexadecimal para rgb, onde eu vou?": "https://www.rapidtables.com/convert/color/hex-to-rgb.html"
+    "Quero converter meu hexadecimal para rgb, onde eu vou?": "https://www.rapidtables.com/convert/color/hex-to-rgb.html",
+    "Componente de sidebar para react": "https://github.com/alexkuz/react-dock",
+    "Quais são os event handlers do react?": "https://flaviocopes.com/react-events/",
+    "Onde devem ficar as funções disparadas por um event handler?": "Uma função que é disparada quando seu componente é clicado (onClick) deve estar escrita antes do return, dentro do seu componente react.",
+    "Qual o benefício de sabermos usar mais event handlers?":"Podemos mostrar uma mensagem depois que o usuário clicar pra copiar um conteúdo (onCopy), podemos mostrar um texto de ajuda pro usuário preencher um formulário(onInput). Quanto mais conhecermos os event handlers, mais nossa UI será gostosa de se usar, pois o planejamento de UX levará em consideração todos os eventos possíveis.",
+    "Como alinhar um item sem flexbox?": "Alinhar na vertical:   margin: auto 0; Alinhar na horizontal é margin: 0 auto"
   }
 }

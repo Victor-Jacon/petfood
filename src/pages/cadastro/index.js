@@ -5,7 +5,7 @@ import '../../styles/global.css'
 const Cadastro = () => {
   return (
     <div className="container-fluid h-100 bg-primary">
-      <Header whiteVersion />
+      <Header whiteVersion hideCart/> {/* Sidebar validação 3 - Passamos a prop/atributo hidecart pra esconder o carrinho da tela de cadastro, não faz sentido mesmo mostrar isso na tela de cadastro. */}
       <div className="row content-cadastro">
         <div className="col-6 text-right my-auto content-img">
           <img src={Illustration} className="img-fluid" alt="Ilustração do PetFood" />

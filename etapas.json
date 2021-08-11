@@ -30,5 +30,21 @@
     "Fiz a estilização completa do ProdutoCard",
     "Criei a pagina de Petshop, que é como se fosse o site do parceiro que se cadastra na nossa plataforma",
     "Fiz a estilização da pagina Petshop"
+  ],
+  "Commit 4":
+  [
+    "Criei o componente sidebar, e implementei ele na minha ui usando o Dock",
+    "Criei uma função openDrawer, dentro dela criei um custom event e enviei ele para o navegador",
+    "Com o evento customizado criado, eu coloquei o openCart pra ser ativado quando o usuário clicar no botão da sidebar, que o botão de carrinho",
+    "No meu componente sidebar criei um useEffect pra ser executado assim que o componente for montado na tela. Ele vai escutar o evento, e se ele escutar o openCart que é novo evento custom, ele vai executar uma função. Essa função basicamente troca o estado da sidebar para ativo, ou seja, clicou no carrinho, vai abrir o modal/drawer",
+    "Instalei o dock que é a lib que usamos para gerenciar nosso drawer/sidebar, e fiz as configurações básicas, position right pra ele abrir a partir da direita, gerenciei se ele está visível ou não usando o event handler isVisible, e usei o event handler onVisibleChange, pra caso aconteça uma mudança de visibilidade do componente, ele atualize o estado também.",
+    "Configurei para dentro da minha sidebar carregar os produtos que o usuário colocou na cestinha, até então são mocks, pois ainda não tem conexão com backend",
+    "Criei um botão que aparece dentro desta sidebar, que é pro usuário finalizar a compra dele",
+    "Estilizei a sidebar pra ela aparecer inteirinha em 1 view port, ou seja, pro usuário não ter que scrollar a tela pra ver todos os produtos",
+    "Na estilização, adicionei uma formula pra calcular a altura da tela do usuário, e mostrar certinho 100% de altura, e habilita um scroll especial só para a div de cestinha de produtos, assim ele só scrola os itens que tem dentro, se forem muitos. TB configurei para eles aparecer alinhados ao topo (start), pra caso tenham poucos itens eles fiquem alinhados ao inicio.",
+    "Fiz a estilização do botão de abrir a sidebar",
+    "alinhei o botão laranja que fica dentro do component Product, o botão que fica ao lado de cada produto, ele estava alinhado start, e eu alinhei ele ao centro na vertical usando margin auto 0",
+    "Implementei a sidebar no index.js principal da aplicação, para que o botão de carrinho possa abrir o modal/drawer em várias telas diferentes.",
+    "Configuramos os momentos onde queremos que o botão de carrinho seja mostrado. Na tela de checkout e na tela de cadastro não faz sentido aparecer o botão de ver o carrinho, então através de props/atributos a gente passou hideCart, e quando este hideCart estiver presente, o botão de abrir carrinho não vai aparecer. A gente passa esta props para o header, e ela desativa o button dentro do arquivo dela mesmo. "
   ]
 }

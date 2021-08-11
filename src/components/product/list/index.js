@@ -11,7 +11,7 @@ const Product = () => {
           <h6><label className="badge bg-secondary">R$ 30,00</label></h6> {/* O badge conforme o tutorial não funcionou, fiz assim e deu certo. */}
           <small><b>Ração úmida nestlé purina dog chow extra life sachê carne para cães Filhotes - 100g</b></small>
         </div>
-        <div className="col-3">
+        <div className="col-3 product-btn">
           <button className="">-</button>
         </div>
       </div>

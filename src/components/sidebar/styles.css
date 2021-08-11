@@ -1,0 +1,20 @@
+.sidebar h5 {
+  height: 30px;
+  margin-bottom: 0;
+}
+
+/* Sidebar Estilo
+Precisamos que ele ocupe o espaço todo da tela, tirando o título e o footer, então somamos 160+30 e subtraimos ele de 100%.
+Overflow-y ativa a barra de rolagem vertical
+align-content flex-start: se tiver poucos items no carrinho, eles vão ficar alinhados no topo do eixo vertical Y
+*/
+.sidebar .products {
+  max-height: calc(100% - 190px);
+  overflow-y: auto;
+  align-content: flex-start;
+}
+
+.sidebar .footer {
+  height: 160px;
+  background-color: #f6f5f5;
+}

@@ -1,0 +1,10 @@
+/* O btn-secondary do bootstrap não funcionou, então fiz na mão */
+.cart-button, .cart-button:hover {
+    position: relative;
+    float:right; /* Ele joga o botão lá pra direita no topo */
+    z-index: 999;
+    margin-top: -70px;
+    margin-right: 20px;
+    background-color: rgb(var(--secondary));
+    color: white;
+}

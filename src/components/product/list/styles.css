@@ -18,6 +18,9 @@
   display: block;
 }
 
+.product-btn {
+  margin: auto 0;
+}
 /* A classe rounded circle do bootstrap não pegou no meu botão redondo da lista de produtos, então fiz deste jeito */
 .product-list button {
   width: 25px; 
