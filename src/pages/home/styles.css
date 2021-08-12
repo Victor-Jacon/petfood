@@ -1,0 +1,26 @@
+.petshop-list-container {
+    /* Esse posicionamento absolute eu fiz para que o container ficasse por cima do mapa. O mapa do google vai ficar de fundo, e este container vai ficar flutuando em cima dele. */
+    height: 300px;
+    position: absolute;
+    top: 91px;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
+
+    background: linear-gradient(
+        180deg,
+        #ffffff 55.47%,
+        rgba(255,255,255,0) 100%
+    );
+}
+
+.petshop-list {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+
+    /* Cria barra de rolagem na horizontal, o white space é um oposto flex wrap, ele faz o item continuar indo pra lateral, mesmo que não apareça na tela, ao invés de quebrar pra linha de baixo. E aí, a gente adiciona nosso scroll com overflow-x, e aí atingimos nosso objetivo */
+    white-space: nowrap;
+    overflow-x: auto;
+}

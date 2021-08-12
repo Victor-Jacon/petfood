@@ -14,5 +14,11 @@
     "Onde devem ficar as funções disparadas por um event handler?": "Uma função que é disparada quando seu componente é clicado (onClick) deve estar escrita antes do return, dentro do seu componente react.",
     "Qual o benefício de sabermos usar mais event handlers?":"Podemos mostrar uma mensagem depois que o usuário clicar pra copiar um conteúdo (onCopy), podemos mostrar um texto de ajuda pro usuário preencher um formulário(onInput). Quanto mais conhecermos os event handlers, mais nossa UI será gostosa de se usar, pois o planejamento de UX levará em consideração todos os eventos possíveis.",
     "Como alinhar um item sem flexbox?": "Alinhar na vertical:   margin: auto 0; Alinhar na horizontal é margin: 0 auto"
+  },
+  "Petfood - Parte 3":
+  {
+    "Como colocar o google maps no meu web app react?":"https://github.com/google-map-react/google-map-react",
+    "Como colocar pins no meu google maps pra representar por ex as lojas parceiras?":"Usando markers, olha bem este código que fizemos, a gente tem o componente marker, e a gente usa ele dentro do google map react, a gente passa o lat e o lng como parametros dele, e o pointer fica certo",
+    "Como colocar rotas e links no meu react app?":"https://reactrouter.com/web/guides/quick-start"
   }
 }

@@ -1,5 +1,7 @@
 import Logo from '../../assets/logo.png'
 import LogoWhite from '../../assets/logo-white.png'
+
+import { Link } from 'react-router-dom'
 import './styles.css'
 
 /* Se eu receber a props whiteVersion significa que o logo do header será branco, se não, será a logo verde comum */
@@ -18,10 +20,13 @@ const Header = ({ whiteVersion, hideCart }) => {
 
   return (
     <div className="col-12">
+      {/* Rotas 6/6 - Colocamos o link para sempre que o usuário clicar na logo do site, ele seja redirecionado de volta para o root, path / */}
       <header className="py-4 px-4 text-center"> {/* py/px = padding eixo x + eixo y */}
-        <img src={whiteVersion ? LogoWhite : Logo } className="img-fluid" alt="Logo do PetFood" />
+        <Link to="/">
+          <img src={whiteVersion ? LogoWhite : Logo } className="img-fluid" alt="Logo do PetFood" />
+        </Link>
       </header>
-
+    
       {/* Sidebar - 9/11 - Agora vou configurar para que quando o usuário clicar (onClick) a UI execute a função openDrawer*/}
       {/* Sidebar Validação 2 - Aqui eu verifico se não existir a propriedade hidecart, eu mostro o botão pra abrir a sidebar */}
       {!hideCart && 

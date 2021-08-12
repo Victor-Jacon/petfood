@@ -46,5 +46,19 @@
     "alinhei o botão laranja que fica dentro do component Product, o botão que fica ao lado de cada produto, ele estava alinhado start, e eu alinhei ele ao centro na vertical usando margin auto 0",
     "Implementei a sidebar no index.js principal da aplicação, para que o botão de carrinho possa abrir o modal/drawer em várias telas diferentes.",
     "Configuramos os momentos onde queremos que o botão de carrinho seja mostrado. Na tela de checkout e na tela de cadastro não faz sentido aparecer o botão de ver o carrinho, então através de props/atributos a gente passou hideCart, e quando este hideCart estiver presente, o botão de abrir carrinho não vai aparecer. A gente passa esta props para o header, e ela desativa o button dentro do arquivo dela mesmo. "
+  ],
+  "Commit 5":
+  [
+    "Implementei a lib Google Map React, essa lib a gente instala com yarn add google-map-react, e eu coloquei esse map como background para a home, para depois eu colocar markers mostrando no mapa as lojas parceiras",
+    "Criei um componente marker e coloquei ele dentro da minha tag do Google Map React, desta forma, a gente passa latitude e longitude no marker, e ele vai ficar posicionado certinho no mapa.",
+    "Estilizei o componente marker pra ele ser uma imagem svg de pin, coloquei img fluid nele, e coloquei um atributo de img src nele, pra que o marker mostre o logo do parceiro no mapa.",
+    "Estilizei o componente marker pra ele ter um estado de ativo, que é quando o usuário clicar nele, pra ele ficar na cor primary, que é aquele verde",
+    "Posicionei o img do marker de forma absolute , deixei ele redondinho para ele encaixar dentro do svg de marker em branco que a gente importou nele, fazemos isso justamente para que o logo do parceiro sobreponha o svg em branco que vem dentro dele, se não ele se comportaria inline ou block, e não é o que a gente quer",
+    "Estilizei o container de map para ele ficar com 100% do tamanho, subtraindo os 94px do header, dessa forma fica tudo em uma viewport só, e não cria overflow",
+    "Criei também a listagem de parceiros da pagina home, que vai mostrar as informações do parceiro, a distancia, a avaliação, se ele oferece frete grátis.",
+    "Estilizei a home onde mostra os parceiros, para listar os parceiros e criar um overflow-x , que é a barra de rolagem na horizontal. Essa barra de rolagem vai ser ativada apenas para a div dos parceiros, e não no window/janela do navegador, isso cria um efeito muito legal, e depois a gente ainda consegue estilizar essa barra de rolagem. ",
+    "Estilizei o container de listagem de parceiros para ele ficar por cima do Google map react que a gente configurou de background.",
+    "Configurei as rotas do projeto, usando a lib react-router-dom.",
+    "Coloquei um <Link /> no meu header, pra quando o usuário clicar no logo do site, ele ser redirecionado para a home path /"
   ]
 }
