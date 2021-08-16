@@ -2,11 +2,13 @@ import GoogleMapReact from 'google-map-react';
 import './styles.css'
 import Marker from '../marker'
 
+const GOOGLE_MAPS_API = require('../../keys.json').maps_key
+
 const Map = () => {
   return (
-    <div className="container-map">
+    <div className="container-map" style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyCWBxlNpEtAk1yi9lgZ5WeW89b5pdva0Ek'}}
+        bootstrapURLKeys={{ key: GOOGLE_MAPS_API}}
         center ={{
           lat: -27.081148, 
           lng: -48.860083,

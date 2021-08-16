@@ -20,5 +20,15 @@
     "Como colocar o google maps no meu web app react?":"https://github.com/google-map-react/google-map-react",
     "Como colocar pins no meu google maps pra representar por ex as lojas parceiras?":"Usando markers, olha bem este código que fizemos, a gente tem o componente marker, e a gente usa ele dentro do google map react, a gente passa o lat e o lng como parametros dele, e o pointer fica certo",
     "Como colocar rotas e links no meu react app?":"https://reactrouter.com/web/guides/quick-start"
+  },
+  "Petfood - Parte 4":
+  {
+    "Qual o link pra gerenciar minhas api keys do google maps?":"https://console.cloud.google.com/google/maps-apis/credentials?project=graphite-store-322905&supportedpurview=project",
+    "Meu google maps não carrega na aplicação, o que pode ser?":"O google maps exige um width e um height determinados no style da div que ele estiver, sem isso, ele não funciona"
+  },
+  "Petfood - Parte 5":
+  {
+    "Qual o passo a passo para o setup do redux no nosso projeto?":"Terminal: yarn add redux react-redux + yarn add redux-devtools-extension (https://github.com/zalmoxisus/redux-devtools-extension), o redux devtools extension precisa ser implementado dentro da sua store com a seguinte linha que está na documentação do github: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() + extensão google chrome redux dev tools(https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=pt-BR), adiciona o immer(biblioteca de imutabilidade para JS) yarn add immer",
+    "Como adicionar um item para o gitignore?":"ABre o github desktop, botão direito no arquivo que vc quer ignorar, ignore-file(add to git ignore)"
   }
 }

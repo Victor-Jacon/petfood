@@ -60,5 +60,17 @@
     "Estilizei o container de listagem de parceiros para ele ficar por cima do Google map react que a gente configurou de background.",
     "Configurei as rotas do projeto, usando a lib react-router-dom.",
     "Coloquei um <Link /> no meu header, pra quando o usuário clicar no logo do site, ele ser redirecionado para a home path /"
+  ],
+  "Commit 6 (parte 3)":
+  [
+    "Corrigi o bug que o mapa não aparecia de fundo, bastou adicionar um style width+height de 100% que resolveu. e adicionei minha api key ao projeto, agora o google map react está funcionando.",
+    "Feature: Quando o usuário clica(onClick) no marker do google maps, agora o marker fica verde se o usuário tiver clicado nele.(troco o src do img usando lógica e state)",
+    "Adicionei redux no projeto - yarn add redux react-redux",
+    "Adicionei a extensão do redux dev tools no google chrome",
+    "Instalei o redux dev tools extension no projeto - yarn add redux-devtools-extension",
+    "Adicionei o immer para garantir imutabilidade JS, é uma boa prática usar immer junto com redux.",
+    "Implementação: Finalizei toda a implementação do redux no nosso projeto, e coloquei nossa primeira action(SET_CUSTOMER)",
+    "Boas Práticas: Criei os arqivos actions e types para chamar nossas actions de forma dinâmica",
+    "Boas Práticas: Renomeei o set_customer como @shop/set_customer para seguir a boa prática, que determina que o nome da action seja @nomeDoMódulo/nomeDaAction"
   ]
 }
