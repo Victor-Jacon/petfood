@@ -72,5 +72,13 @@
     "Implementação: Finalizei toda a implementação do redux no nosso projeto, e coloquei nossa primeira action(SET_CUSTOMER)",
     "Boas Práticas: Criei os arqivos actions e types para chamar nossas actions de forma dinâmica",
     "Boas Práticas: Renomeei o set_customer como @shop/set_customer para seguir a boa prática, que determina que o nome da action seja @nomeDoMódulo/nomeDaAction"
+  ],
+  "Commit 7":
+  [
+   "Quando eu desenvolvo uma aplicação com react + node + mongo, como eu inicio todos os ambientes para o projeto rodar de forma local? Primeiro precisa startar a banco de dados: sudo systemctl start mongod, depois precisa ver se o banco realmente está UP sudo systemctl status mongod, aí a api vai consumir do mongo, então inicia a api. Navega pelo terminal até a pasta api, no nosso caso é cd api, e depois yarn start. 3- E agora, vamos startar nosso front end, que vai consumir da api, ai fazemos cd web, yarn start. Pronto agora vc tá rodando tudo de forma local. (react+node+mongo)",
+   "Redux: Gerenciar estado do componente Marker",
+   "Consumindo estado do Redux no Front - Troquei os dados estáticos das petshops pelo dado dinâmico da store do redux",
+   "Fiz a configuração completa do redux saga, neste use case vamos buscar dados do mongoDB.",
+   "Implementei IMMER.JS para garantir imutabilidade no meu reducer."
   ]
 }

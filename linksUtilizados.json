@@ -30,5 +30,10 @@
   {
     "Qual o passo a passo para o setup do redux no nosso projeto?":"Terminal: yarn add redux react-redux + yarn add redux-devtools-extension (https://github.com/zalmoxisus/redux-devtools-extension), o redux devtools extension precisa ser implementado dentro da sua store com a seguinte linha que está na documentação do github: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() + extensão google chrome redux dev tools(https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=pt-BR), adiciona o immer(biblioteca de imutabilidade para JS) yarn add immer",
     "Como adicionar um item para o gitignore?":"ABre o github desktop, botão direito no arquivo que vc quer ignorar, ignore-file(add to git ignore)"
+  },
+  "Petfood - Parte 6":
+  {
+    "Como fazer consulta api usando redux?":"Precisa usar o redux-saga, ele é um middleware, ele intercepta as actions que a gente dispara, ele faz as requisições por ex, executa algo asincrono(ou seja, que precisa aguardar uma resposta) e aí sim devolve uma resposta ao nosso reducer.",
+    "Posso usar o axios no front e no back?":"Sim, aí instala em ambos os projetos, na pasta do projeto frontend, neste caso é a pasta web, e na pasta do projeto backend, que neste caso é a pasta api"
   }
 }

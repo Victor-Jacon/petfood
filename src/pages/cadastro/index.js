@@ -8,14 +8,9 @@ import { setCustomerStore } from '../../store/modules/shop/actions' /* REDUX BOA
 
 const Cadastro = () => {
   /* REDUX 16 - Implemento o useDispatch */
-  
   const dispatch = useDispatch();
 
-  /* REDUX 12 - 
-  Gerenciamos o estado com useState
-  A gente copia a requisição de exemplo que fizemos para o pagar-me e pegamos só o trecho que tem os dados do customer/cliente
-  O external id precisa ser único, então usamos o new Date().getTime().toString() pois ele sempre retorna um valor unico de timestamp, então ele resolve a questão do id ser único.
-  */
+  /* REDUX 12 - Gerenciamos o estado com useState; A gente copia a requisição de exemplo que fizemos para o pagar-me e pegamos só o trecho que tem os dados do customer/cliente; O external id precisa ser único, então usamos o new Date().getTime().toString() pois ele sempre retorna um valor unico de timestamp, então ele resolve a questão do id ser único. */
   const [customer, setCustomer] = useState({
     "external_id": new Date().getTime().toString(),
 		"name": "",

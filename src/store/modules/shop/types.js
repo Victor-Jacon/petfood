@@ -6,6 +6,12 @@ Pra resolver isso, criamos o arquivo types.js, que vai conter
 
 const types = {
     SET_CUSTOMER: '@shop/SET_CUSTOMER',
+    REQUEST_PETSHOPS: '@shop/REQUEST_PETSHOPS',
+    SET_PETSHOPS: '@shop/SET_PETSHOPS', /* REDUX SAGA 9 - Crio minha action type */
+    
+    /* MARKER 7 - Criamos o type pra gerenciar o estado de clicado ou não no mapa + map center */
+    SET_PETSHOP_MAP_SELECTED: '@shop/SET_PETSHOP_MAP_SELECTED',
+    SET_MAP_CENTER: '@shop/SET_MAP_CENTER',
 }
 
 export default types;
