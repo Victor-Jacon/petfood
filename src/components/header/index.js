@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux' /* Cart 11 */
 import Logo from '../../assets/logo.png'
 import LogoWhite from '../../assets/logo-white.png'
 
@@ -7,6 +8,8 @@ import './styles.css'
 /* Se eu receber a props whiteVersion significa que o logo do header será branco, se não, será a logo verde comum */
 /* Sidebar Validação 1 - Habilito o header de receber a prop/atributo hidecart, que será usado para verificarmos se vamos ou não renderizar o componente sideBar */
 const Header = ({ whiteVersion, hideCart }) => {
+
+  const { cart } = useSelector((state) => state.shop); /* Cart 12 */
 
   /* Sidebar - 8/11
   Crio a função openDrawer
@@ -29,10 +32,12 @@ const Header = ({ whiteVersion, hideCart }) => {
     
       {/* Sidebar - 9/11 - Agora vou configurar para que quando o usuário clicar (onClick) a UI execute a função openDrawer*/}
       {/* Sidebar Validação 2 - Aqui eu verifico se não existir a propriedade hidecart, eu mostro o botão pra abrir a sidebar */}
+      {/* Cart 13 - Se não tiver nenhum item no carrinho, não vai mostrar nenhum número, e vai dizer carrinho vazio. + Se tiver 1 item, vai ter escrito 1 item, e se tiver mais de 1 item, ele vai mudar para plural (itens) */}
       {!hideCart && 
       <button onClick={() => openDrawer()} className="btn cart-button">
         <span className="mdi mdi-cart"></span>
-        2 itens
+        {cart.length === 0 ? ' ' : cart.length} 
+        {cart.length === 0 ? ' Carrinho Vazio' : cart.length === 1 ? ' Item' : ' Itens'}
       </button>}
     </div>
 )

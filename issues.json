@@ -1,0 +1,6 @@
+{
+    "Bugs 1": {
+        "Buscar dados da petshop no banco e mostrar na tela. O mongoDB está conectando, certas actions do redux estão sendo disparadas, mas a action REQUEST_PETSHOP que busca os dados da petshop pra popular o front, está sendo executada DEPOIS que o componente já está na tela, então a variável está dando undefined. ":"Solução: O problema é que o componente está tentando renderizar antes do redux saga trazer os dados, aí o objeto está vindo vazio. Ele tá tentando popular os dados da petshop antes da requisição ser realizada. Ou o problema pode estar no req.params.match, que não está enviando. Pra corrigir por enquanto, está sendo necessário substituir o map do objeto petshop por uma array estática, salvar, e depois, substituir pelo código dinamico, ai não dá mais erro. É só na primeira vez que precisa fazer.",
+        "O silvio respondeu minha dúvida": "A ideia do silvio é usar o optional chaining, que permite que o objeto seja nulo. Assim, na tela ele carrega nulo, e depois recebe os dados do redux saga. Funciona, não sei se é boa prática. "
+    }
+}

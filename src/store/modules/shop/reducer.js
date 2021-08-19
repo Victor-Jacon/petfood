@@ -15,7 +15,11 @@ const INITIAL_STATE = {
   mapCenter: { /* MARKER 1 */
     lat: -23.561684,
     lng: -46.625378
-  }
+  },
+
+  /* PETSHOP QUERY 8 */
+  petshop: {},
+  cart: []
 }
 
 function shop (state = INITIAL_STATE, action) {
@@ -49,6 +53,31 @@ function shop (state = INITIAL_STATE, action) {
     case types.SET_MAP_CENTER: {
       return produce(state, (draft) => {
         draft.mapCenter = action.location; 
+      })
+    }
+
+    /* PETSHOP QUERY 9 */
+    case types.SET_PETSHOP: {
+      return produce(state, (draft) => {
+        draft.petshop = action.petshop; 
+      })
+    }
+
+    /* CART 3 - 
+    Precisamos verificar se o produto existe dentro do carrinho, para saber se vamos adicionar ou remover.
+    Nosso carrinho é uma array. Arrays possuem posições/index. 
+    Quero executar uma lógica e salvar o resultado dela na variável index, pra depois eu verificar o que eu farei com a ação do usuário (se vai adicionar ou remover do carrinho)
+    No index ficará salvo o resultado de: Existe algum produto no meu carrinho que tem o mesmo ID que o produto que eu acabei de clicar? Salve a resposta desta lógica na variavel index.
+    Se o index for diferente de -1, ou seja, se ele existir, faça o seguinte: percorra a array a partir do item encontrado, e exclua 1 item a partir dele, ou seja, exclua somente ele mesmo. 
+    Caso contrário (o produto não exista), utilize o método push (que adiciona registros em array), e pegue o produto que foi clicado e adicione na array do carrinho. */
+    case types.TOGGLE_CART_PRODUCT: {
+      return produce(state, (draft) => {
+        const index = draft.cart.findIndex((p) => p._id === action.product._id)
+        if (index !== -1) {
+          draft.cart.splice(index, 1);
+        } else {
+          draft.cart.push(action.product);
+        }
       })
     }
 

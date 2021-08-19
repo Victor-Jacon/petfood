@@ -1,10 +1,23 @@
-import './styles.css'
-import Dock from 'react-dock'; /* Sidebar - 2/11 - Importa a lib de sidebar */
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux' /* Cart 14 */
+
+import Dock from 'react-dock'; /* Sidebar - 2/11 - Importa a lib de sidebar */
 import Product from '../product/list'; /* Sidebar - 7/11 - importa o product que chamamos na etapa anterior */
+import './styles.css'
 
 /* Sidebar - 1/11 - Prepara o componente, só rafce mesmo. */
 const Sidebar = () => {
+
+  const { cart } = useSelector((state) => state.shop) /* Cart 15 */
+
+  /* CART 22 - Queremos somar o total de produtos que tem no carrinho.
+  A função reduce faz a soma dos produtos que tem na lista/array do carrinho, ele é tipo um forEach para somar valores de array.
+  O .reduce é um metodo padrão de arrays, o último parâmetro, que é o zero, é o valor inicial da somatória. 
+  O primeiro parâmetro é o valor total acumulado, e o segundo é o item iterado, no nosso caso, somaremos os produtos, então é product.
+  A gente retorna para a variavel total o valor do total + todos os produtos.preco da array somados  */
+  const total = cart.reduce((total, product) => { 
+    return total + product.preco; 
+  },0)
 
   const [opened, setOpened] = useState(false) /* Sidebar - 4/11 - Gerenciar estado pra saber se o sidebar está aberto ou não + determina que ele estará fechado por padrão (false) */
 
@@ -35,18 +48,19 @@ const Sidebar = () => {
 
   > 
     <div className="container-fluid h-100 pt-4 sidebar">
-      <h5>Minha Sacola (5)</h5>
+      <h5>Minha Sacola ({cart.length})</h5> {/* Cart 16 */}
 
       <div className="row products">
-        {[1,2,3,4,5,6,7,8,9].map((p) => (
-        <Product />
+        {/* Cart 17 - O cart vem da store do redux. Cada p é um produto que está dentro a array cart. Passo cada produto para o componente Product através da props product={p}, sendo o p a representação de cada produto iterado da array cart. */}
+        {cart.map((p) => (
+        <Product product={p} />
         ))}
       </div>
 
       <div className="row align-items-end footer">
         <div className="col-12 d-flex justify-content-between align-items-center">
           <b className="d-inline-block">Total</b>
-          <h3>R$ 90,00</h3>
+          <h3>R$ {total.toFixed(2)}</h3>
         </div>
         <button className="btn btn-block btn-lg btn-primary rounded-0 h-50 align-items-center">Finalizar Compra</button>
       </div>

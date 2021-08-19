@@ -80,5 +80,29 @@
    "Consumindo estado do Redux no Front - Troquei os dados estáticos das petshops pelo dado dinâmico da store do redux",
    "Fiz a configuração completa do redux saga, neste use case vamos buscar dados do mongoDB.",
    "Implementei IMMER.JS para garantir imutabilidade no meu reducer."
+  ],
+  "Commit 8":
+  [
+    "(Redux - MARKER) Removemos o controle de estado do componente marker, que estava sendo realizado pelo hook useState, e passamos a gerenciar o estado dele através do redux. ",
+    "(Redux) Realizamos toda a configuração da petshop selecionada, para controlar o estado de quando o usuário clicar em uma loja parceira",
+    "(CSS) Estilizamos a petshop clicada, pra aparecer na lista uma borda verde embaixo, pro usuário saber qual delas está selecionada. Assim como configuramos um hover, com o mesmo efeito.",
+    "(Redux Saga/Router Dom - PETSHOP QUERY) Para a api saber qual petshop queremos carregar, enviamos o ID da petshop clicada no mapa/lista por req.params. No caso do <Link> o nome é match.params.id, que é passado como props por padrão, nem precisamos criar. Atualizamos o componente para ele estar preparado para receber esta props do front, e o id é enviado para nosso redux saga realizar a consulta no mongoDB",
+    "(Redux Saga - PETSHOP QUERY) Quando clicamos na petshop no mapa, abre a pagina da petshop parceira. Substituimos os produtos de mock da loja parceira pelos produtos reais do DB. No redux saga configuramos a request, e depois no reducer, atualizamos o estado do objeto PETSHOP. Dentro do objeto petshop tem petshop.products, que são os produtos que o parceiro possui à venda. Nesta etapa encontramos um bug. O front end estava carregando a dom, antes do redux saga retornar os dados da api, e estava dando objeto undefined na petshop.products. Coloquei o optional chaining, que permite o objeto ser undefined sem dar crash, e aí, ele passou a carregar a tela e os dados da api chegavam e preenchiam certinho a loja do parceiro com todos os produtos a venda",
+    "(Redux/front - PETSHOP QUERY) Substituimos os dados de produto de mock por produtos reais que vieram no objeto petshop, que o redux saga chamou da api",
+    "(Redux - PETSHOP QUERY) Criamos a action requestPetshop(id), que recebe o id da petshop que é pra buscar. Esse id vem do <Link>, passa por props para o componente, e o componente da dispatch na action passando este id como parâmetro da action lá no front.",
+    "(Redux - PETSHOP QUERY) Criamos a action setPetshop(petshop), que recebe o objeto petshop. Essa action setPetshop é chamada dentro do nosso redux saga. Basicamente é assim, o redux saga dá a requestPetshop pra puxar os dados, e depois da um yield pra retornar os valores pra action setPetshop. A setPetshop vai atualizaar o estado inicial do objeto petshop, então a requestPetshop apenas dá um get nos dados da api.",
+    "(Redux - PETSHOP QUERY Queremos que a requisição get dos produtos da petshop seja realizada assim que o componente for montado na tela, pra isso, colocarmos o dispatch dentro do useEffect com dependências vazias. 1-O front dispara o redux saga. 2-No finalzinho do saga, ele ativa o setPetshop(atualizando a listagem de produtos daquela petshop parceira). 3-No front, para usarmos este valor, a gente busca ele da nossa store, usando o useSelector. 4-Pronto, agora podemos acessar os valores atualizados do objeto petshop.",
+    {
+      "Cart":
+      [
+      "Precisamos verificar se o produto existe dentro do carrinho, para saber se vamos adicionar ou remover.",
+      "Nosso carrinho é uma array. Arrays possuem posições/index.", 
+      "Quero executar uma lógica e salvar o resultado dela na variável index, pra depois eu verificar o que eu farei com a ação do usuário (se vai adicionar ou remover do carrinho)",
+      "No index ficará salvo o resultado de: Existe algum produto no meu carrinho que tem o mesmo ID que o produto que eu acabei de clicar? Salve o resultado desta lógica na variavel index.",
+      "Se o index for diferente de -1, ou seja, se ele existir, faça o seguinte: percorra a array a partir do item encontrado, e exclua 1 item a partir dele, ou seja, somente ele mesmo.",
+      "Caso contrário (o produto não exista), utilize o método push (que adiciona registros em array), e pegue o produto que foi clicado e adicione na array do carrinho.",
+      "Substituimos os produtos de mock que estavam sendo usados no carrinho por produtos reais"
+      ]
+    }
   ]
 }

@@ -1,6 +1,6 @@
 /* Marker 11 - Importo as 2 actions que vou usar pra setar a petshop selecionada + setar o centro do mapa
 Quero controlar o estado com redux, então ao invés de useState eu uso o useDispatch do redux. */
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux' // Petshop selecionada 2 - Importar
 import { setShopMapSelected, setMapCenter } from '../../store/modules/shop/actions';
 
 import './styles.css'
@@ -11,11 +11,12 @@ O src do nosso img estava estático, era URL da web. Como agora temos o objeto v
 Nesta etapa de trocar dados estáticos por dados vindos do banco, é legal abrir o redux dev tools e ir olhando os dados a hierarquia dos dados, se é objeto, array, qual o nome foi dado, pra conseguir consumir certinho aqui no componente, e como consequência, aparecer certinho no front. Pq a gente não está consumindo direto do banco de dados, o dado passa primeiro pela store a gente de chegar aqui, então a "fonte da verdade" não é o banco, e sim a store. */
 const Petshop = ({ petshop }) => {
   const dispatch = useDispatch()
+  const { petshopMapSelected } = useSelector(state => state.shop); // Petshop selecionada 3 - Implementar
 
   /* MARKER 6 - Criamos a função pra cuidar do state + centralizar o mapa */
   const setSelectedPetshop = () => {
     /* Marker 12 - setar a petshop selecionada */
-    dispatch(setShopMapSelected(petshop));
+    dispatch(setShopMapSelected(petshop._id));
 
       /* Marker 13 - setar o centro do mapa */
     dispatch(setMapCenter(petshop.location));
@@ -23,7 +24,7 @@ const Petshop = ({ petshop }) => {
 
   return (
     <li 
-      className="petshop d-inline-block"
+      className={`petshop d-inline-block ${petshopMapSelected === petshop._id ? 'active' : ''}`} // Petshop selecionada 4 - Se o id que estiver no setShopMapSelected for o mesmo do estado, então vai colocar a classe active, se não, não coloca nada.
       onClick={() => setSelectedPetshop()} /* MARKER 5 - Quando clicado, este elemento vai executar a função que vai CONTROLAR O STATE + centralizar o mapa. */
     >
       <div className="d-inline-block">

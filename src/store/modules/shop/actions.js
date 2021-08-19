@@ -27,3 +27,19 @@ export function setShopMapSelected(petshop) {
 export function setMapCenter(location) {
     return { type: types.SET_MAP_CENTER, location }
 }
+
+/* PETSHOP QUERY 4 */
+
+export function requestPetshop(id) {
+    return { type: types.REQUEST_PETSHOP, id }
+}
+
+/* PETSHOP QUERY 7 */
+export function setPetshop(petshop) {
+    return { type: types.SET_PETSHOP, petshop }
+}
+
+/* CART 2 */
+export function toggleCartProduct(product) {
+    return { type: types.TOGGLE_CART_PRODUCT, product }
+}

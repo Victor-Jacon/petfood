@@ -3,10 +3,21 @@
     padding: 7px;
     margin-right: 20px;
     border-radius: 5px;
-    border-bottom: 3px;
+    border-bottom: 3px solid transparent;
 
     display: flex;
     align-items: center;
+
+    transition: 0.5s;
+}
+
+/* Petshop selecionada 1 - Crio a estilização para quando a petshop tiver o estado de active.
+Quando passa o mouse por cima da petshop na listagem da home, ele cria uma bordinha verde na base */
+.petshop.active, .petshop:hover {
+    cursor: pointer;
+    border-bottom: 3px solid rgb(var(--primary));
+    transition: 0.5s;
+    background-color: #F6F5F5;
 }
 
 .petshop img {

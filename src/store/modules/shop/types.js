@@ -12,6 +12,13 @@ const types = {
     /* MARKER 7 - Criamos o type pra gerenciar o estado de clicado ou não no mapa + map center */
     SET_PETSHOP_MAP_SELECTED: '@shop/SET_PETSHOP_MAP_SELECTED',
     SET_MAP_CENTER: '@shop/SET_MAP_CENTER',
+
+    /* PETSHOP QUERY 3 */
+    REQUEST_PETSHOP: '@shop/REQUEST_PETSHOP',
+    SET_PETSHOP: '@shop/SET_PETSHOP',
+
+    /* CART 1 */
+    TOGGLE_CART_PRODUCT: '@shop/TOGGLE_CART_PRODUCT'
 }
 
 export default types;

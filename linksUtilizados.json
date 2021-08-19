@@ -35,5 +35,10 @@
   {
     "Como fazer consulta api usando redux?":"Precisa usar o redux-saga, ele é um middleware, ele intercepta as actions que a gente dispara, ele faz as requisições por ex, executa algo asincrono(ou seja, que precisa aguardar uma resposta) e aí sim devolve uma resposta ao nosso reducer.",
     "Posso usar o axios no front e no back?":"Sim, aí instala em ambos os projetos, na pasta do projeto frontend, neste caso é a pasta web, e na pasta do projeto backend, que neste caso é a pasta api"
+  },
+  "Petfood - Parte 7":
+  {
+    "Quem é responsável por realizar as requisições no redux?": "O redux saga faz a requisição (get), e o reducer seta um valor inicial + salva estes dados da requisição do redux saga no objeto, atualizando seu estado.",
+    "Meu front está tentando renderizar o DOM antes de receber os dados do servidor, e por isso, os objetos que eu estava esperando pra popular o front estão dando erro de variavel undefined, o que fazer?":"Coloca o optional chaining, exemplo: petshop.produtos?; o ponto de interrogação é o optional chaining, ele permite que o objeto seja undefined sem dar erro, ai o front carrega, e depois os dados da requisição chegam, e populam o front. "
   }
 }
