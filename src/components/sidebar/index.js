@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux' /* Cart 14 */
+import { useHistory } from 'react-router-dom'; // Checkout 1
 
 import Dock from 'react-dock'; /* Sidebar - 2/11 - Importa a lib de sidebar */
 import Product from '../product/list'; /* Sidebar - 7/11 - importa o product que chamamos na etapa anterior */
@@ -7,6 +8,8 @@ import './styles.css'
 
 /* Sidebar - 1/11 - Prepara o componente, só rafce mesmo. */
 const Sidebar = () => {
+
+  const history = useHistory(); // Checkout 2
 
   const { cart } = useSelector((state) => state.shop) /* Cart 15 */
 
@@ -62,7 +65,10 @@ const Sidebar = () => {
           <b className="d-inline-block">Total</b>
           <h3>R$ {total.toFixed(2)}</h3>
         </div>
-        <button className="btn btn-block btn-lg btn-primary rounded-0 h-50 align-items-center">Finalizar Compra</button>
+        {/* Checkout 3 */}
+        <button onClick={() => history.push('/checkout')} className="btn btn-block btn-lg btn-primary rounded-0 h-50 align-items-center">
+          Finalizar Compra
+        </button>
       </div>
     </div>
   </Dock>

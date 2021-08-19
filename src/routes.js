@@ -29,8 +29,8 @@ const Routes = () => {
         <Route path="/petshop/:id" exact component={Petshop} />
         <Route path="/checkout" exact component={Checkout} />
         <Route path="/cadastro" exact component={Cadastro} />
+        <Sidebar /> {/* Checkout 4 - Coloco a sidebar dentro do router, para que o useHistory funcione. Ele é igual <Link>, só funciona se estiver dentro do contexto do router */}
       </Router>
-      <Sidebar />
     </>
     /* Rotas 5/6 - A gente coloca a sidebar aqui no routes.js, durante o desenvolvimento ele estava no index.js que tem o react.domrender, mas o lugar correto FINAL é dentro do routes. */
   )

@@ -104,5 +104,35 @@
       "Substituimos os produtos de mock que estavam sendo usados no carrinho por produtos reais"
       ]
     }
+  ],
+  "Commit 9":
+  [
+    {
+    "Checkout":
+      [
+      "(router-dom) O cliente terminou de adicionar tudo que ele queria na sacola, e agora ele clica em finalizar compra.",
+      "(router-dom) Ele precisa ser redirecionado para a pagina de checkout. Usamos o hook useHistory do react-router-dom + Colocamos a sidebar dentro das chaves do <Router> ou <BrowserRouter>, para que ele seja capaz de ativar o useHIstory no evento de clique(onClick)",
+      "(Redux) Puxamos o objeto cart com useSelector ",
+      "(Redux/Front) Renderizamos o resumo do pedido usando map no objeto cart que puxamos do redux, dessa forma, ele tem de um lado os dados de pgto, e do outro, os itens que ele está comprando pra visualizar.",
+      "(Objeto Transaction/useState) Importamos o useState para começarmos a montar nosso objeto TRANSACTION. Este objeto será enviado para o endpoint do pagarme quando ele estiver com todos os dados tratados bonitinhos. ",
+      "(Objeto Transaction/useState) Copiamos da documentação ou do insomnia o modelo JSON de como o endpoint do pagarme espera receber os dados. A gente precisa enviar os dados exatamente como o endpoint espera receber para não dar erros.",
+      "(Objeto Transaction/useState) Instalo a lib dayjs + Implemento a lib na linha delivery_date. Inicializo o dayjs. Entrega será em 7 dias, e formato para a data aparecer no formato de ano/mês/dia",
+      "(Objeto Transaction/Formulario Entrega) Crio a função setShippingValue. Essa função vai atualizar o estado do objeto transaction.; Ela vai pegar tudo de transaction, e vai alterar o shipping + address; Essa função ela recebe uma key, e um value. Criamos estes placeholder pra receber os dados dos nossos formulários.; Lá no formulário, a cada onChange, será chamada essa função, e a gente vai passar, por ex, o cep é a chave/key, e o valor/value é o que o usuário digitar (e.target.value)",
+      "(Objeto Transaction/Formulario Entrega) Passo a key que será o zipcode, e o value, que será o que o usuário digitar, desta forma, a gente atualiza o estado do objeto transaction, nas keys e values de endereço.; Cada campo do formulário será atualizado desta mesma forma.",
+      "(Objeto Transaction/Formulario Dados de PGTO) A partir daqui fica diferente pra atualizar o estado.; A função setShippingValue só se aplica nos endereços.; Nos campos do formulário de dados de pgto a gente vai atualizar direto usando o useState mesmo; A gente pega tudo o que vier do objeto transaction, copia (...transaction) e atualiza somente o campo do objeto que é equivalente a este campo aqui do formulário.; O valor que vai ficar em card_number por ex, é o valor que o usuário digitar. o e é de evento. É assim que a gente pega o que o usuário digitou.",
+      "(Objeto Transaction/Formulario Dados de PGTO) O pagar me exige o nome do cartão lá no endpoint de post deles (pra enviar a transação); A gente não tinha planejado pedir o nome que consta no cartão do cliente, então fizemos isso agora.",
+      "(Objeto Transaction/makePurchase(): Criamos a função makePurchase, essa função por enquanto vai ter apenas um console.log dentro dela.; Desta forma a gente consegue ver o JSON final que vamos enviar para o pagarme.; A gente coda, compara com a documentação do pagarme, até ficar igual, e depois disso, podemos realizar testes sandbox.;Quando chegarmos nessa etapa, ai vamos de fato enviar este json para o endpoint do pagarme para ele fazer uma transação fictícia.",
+      "[Objeto Transaction/makePurchase()/Button]: Implementamos a função makePurchase temporariamente no button, para que quando a gente clique em finalizar compra, possamos inspecionar no console como estão formatados os dados do objeto transaction. O objetivo é deixar ele igual ao formato de dados que o pagarme espera receber no endpoint de CREATE TRANSACTION.",
+      "(Objeto Transaction/useEffect[total]: Nosso objeto transaction já está quase pronto pra ser enviado para o pagarme.; Neste momento a gente quer preencher os itens que o cliente comprou + valor total do pedido(assim que o componente for renderizado+toda vez que a variavel total for alterada); Para isso criamos nossa lógica, e colocamos dentro da dependência a variável total. Desta forma toda vez que a variável total mudar, o useEffect vai ser executado novamente.",
+      "(Objeto Cart/Variavel Total): Vamos somar o valor total da compra do cliente, para podermos atualizar no campo amount da requisição que enviaremos ao pagarme.",
+      "(Objeto Transaction/useEffect/Campo amount: Atualizar valor total da compra(campo amount); É importante sempre consultar como o endpoint de post espera receber um dado.; O endpoint do pagarme espera que o campo amount seja postado sem virgula nem ponto, então a gente efetuou o tratamento dos dados na hora de enviar os dados. ",
+      "(Objeto Transaction/useEffect/Campo items: Atualizar sacola do cliente(campo items); O endpoint do pagarme tem uma forma como ele espera receber os dados.; A gente consulta a requisição de exemplo, copia ela, e cola aqui dentro do objeto items.; Mapeamos cada campo conforme o dado dinâmico. Neste caso temos vários produtos na sacola, então a gente executa um map, e cada item iterado preenche os dados do objeto item. Por ex product._id, vai preencher o objeto items no campo product._id. Preenchemos cada dado do nosso projeto, que seja equivalente ao dado que o pagarme espera.; No unit price a gente trata da mesma forma que o amount, porque na documentação do pagarme, diz que ele não pode conter pontos nem virgulas.;O quantity é um campo que por enquanto não respeita um use case real, porque uma pessoa precisa ter a opção de comprar mais de 1 do mesmo produto, então a gente precisa configurar isso mais tarde.",
+      "(Bootstrap): Nossos formulário estavam usando classes do boostrap 4 (pl-0). O objetivo era zerar o padding left. Consultei a documentação do bootstrap, e troquei por pl-0, que é o jeito atualizado de remover padding left."
+    ]
+    }
   ]
 }
+
+
+
+
