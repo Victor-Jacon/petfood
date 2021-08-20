@@ -1,15 +1,22 @@
 import React from 'react'
-import { useSelector } from 'react-redux' /* Checkout 5 */
+import { useSelector, useDispatch } from 'react-redux' /* Checkout 5 + split rules 21 */
 import { useState, useEffect } from 'react' /* Checkout 8 + Checkout 16(useEffect) */
 import dayjs from 'dayjs' /* Checkout 10 */
+import _ from 'underscore' /* SPLIT RULES 1 -Instalei underscore.js (yarn add underscore) + importei */
+
+/* Split rules 23 - Passamos um alias para ele, porque por acaso ele tinha o mesmo nome já usado por outra variável neste arquivo, e fazer assim é mais rápido do que mudar no types, actions etc.. */
+/* SPLIT RULES 37 - Importamos a action makePurchase */
+import { setTransaction as setStoreTransaction, makePruchase } from '../../store/modules/shop/actions'
 import Header from '../../components/header'
 import Product from '../../components/product/list'
 import './styles.css'
 
 const Checkout = () => {
 
-  // Checkout 6
-  const { cart } = useSelector((state) => state.shop)
+  const dispatch = useDispatch() /* split rules 22 */
+
+  // Checkout 6(cart) + SPLIT RULES 9(transaction fee) + SPLIT RULES 15(defaultRecipient)
+  const { cart, transactionFee, defaultRecipient } = useSelector((state) => state.shop)
 
   // Checkout 18 - Vamos somar o valor total da compra do cliente, para podermos atualizar no campo amount da requisição que enviaremos ao pagarme.
   const total = cart.reduce((total, product) => { 
@@ -25,9 +32,8 @@ const Checkout = () => {
     card_cvv: "",
     card_expiration_date: "",
     card_holder_name: "",
-
     shipping: {
-      name: "",
+      name: "Petfood ltda",
       fee: 1000,
       delivery_date: dayjs().add(7, 'days').format('YYYY-MM-DD'),
       expedited: true,
@@ -66,8 +72,91 @@ const Checkout = () => {
   Desta forma a gente consegue ver o JSON final que vamos enviar para o pagarme.
   A gente coda, compara com a documentação do pagarme, até ficar igual, e depois disso, podemos realizar testes sandbox.
   Quando chegarmos nessa etapa, ai vamos de fato enviar este json para o endpoint do pagarme para ele fazer uma transação fictícia. */
+  /* split rules 24 - Nesta etapa enviamos a transaction para o pagarme.
+  Neste projeto não fizemos a validação dos campos, é importante fazer se for subir em produção. */
+  /* SPLIT RULES 38 - Espero 100 milisegundos para o setStoreTransaction conseguir popular o estado global da transação. Executo a ação makePurchase depois dos 100 milisegundos.*/
   const makePurchase = () => {
-    console.log(transaction)
+    dispatch(setStoreTransaction(transaction));
+    setTimeout(() => {
+      dispatch(makePruchase());
+    }, 100)
+  };
+
+   // Este consolelog estava dentro de makePurchase: console.log(transaction) - estávamos usando para fins de desenvolvimento, para ver como chegava o JSON do transaction que enviariamos até a pagarme, na etapa 24 ele é desabilitado
+
+  /* SPLIT RULES 2 - Criei a função getSplitRules. Esta função vai preencher o objeto split_rules do JSON que vamos enviar para o pagarme.
+  Nesta etapa criamos a lógica de como será feita a "divisão" dos pgtos recebidos pela plataforma. 
+  Nossa plataforma permite o cliente de comprar de 2 lojas ao mesmo tempo, similar ao mercado livre. No ifood ele precisa comprar de 1, e depois, comprar de outro. 
+  Sendo assim, a gente precisa ser capaz de separar quais produtos foram vendidos, e de quais lojas eles são.
+  Na variável productsByPetshop vamos agrupar os produtos do carrinho que tem o mesmo ID de petshop.
+  SPLIT RULES 3 - A pagarme espera receber no endpoint CREATE SPLIT TRANSACTION um recipient_id, e não uma petshop id. Vamos tratar isso. 
+  SPLIT RULES 5 - Preparamos o objeto da petshop na etapa anterior, e agora, vamos acessar o recipient id daquela petshop.*/
+  const getSplitRules = () => {
+    const productsByPetshop = _.groupBy(cart, (product) => product.petshop_id.recipient_id
+    );
+
+    let result = [];
+
+    /* SPLIT RULES 6 - O endpoint do pagarme não espera uma soma do valor total, ele espera uma porcentagem. Por ex, quantos % da venda vai ficar para cada recipientid/petshop. Então vamos agora percorrer os objetos(object.keys)+arrays(map) pra descobrir este percentual total. 
+    Supondo 2 lojas parceiras, e o cliente comprou 3 pacotes de ração em cada.
+    O objeto productsByPetshop tem salvo dentro dele neste momento 2 arrays, e dentro de cada array, 3 produtos. 
+    Com object keys a gente acessa o objeto split rules
+    Com .map(petshop) a gente vai iterar sobre cada item da lista de cada petshop.
+    Quando tiver percorrendo cada produto, salve na variavel products de qual petshop ele faz parte.
+    Na variavel totalValuePetPetshop salve o resultado a seguir: A soma de todos os produtos da arrays products. 
+    O método reduce recebe um acumulador, que é tipo o i, porém para soma de valores(total) e recebe o iterado que será somado(product)
+    O acumulador vai começar com seu valor em zero (o valor inicial dele fica lá no final, igual no useEffect)
+    A gente retorna a soma do acumulador(total) + o preço de cada produto(product.preco)
+    No final, a gente diz que quer ficar só com 2 casas depois da virgula .toFixed(2)
+    Retornamos o resultado */
+    Object.keys(productsByPetshop).map((petshop) => {
+      const products = productsByPetshop[petshop];
+      const totalValuePerPetshop = products.reduce((total, product) => {
+        return total + product.preco;
+      }, 0).toFixed(2)
+
+      /* SPLIT RULES 10 - Vamos calcular nossa comissão de marketplace.
+      A gente precisa saber quanto é 10% do valor total por petshop.
+      Se a petshop tem 100 reais de venda, a taxa será * 0,1 e vai dar 10 reais. (10%) */
+      const totalFee = (totalValuePerPetshop * transactionFee).toFixed(2);
+
+      /* SPLIT RULES 7 - Nesta etapa eu peguei a compra do cliente, separei, e sei quanto cada petshop vendeu. Vou agora colocar este valor na array.
+      Liable: Se este parceiro é responsabilizado por chargeback; charge_processing_fee: Se ele vai ser cobrado a % que o pagarme cobra de taxa de serviço 
+      Copiamos da documentação do pagarme como ele espera receber os dados.
+      recipient_id: acessamos o primeiro produto da array, acessamos o objeto petshop, e acessamos a propriedade recipient_id, fácil. (para entender mais da lógica, é só ver a função makePurchase, lá tem um console log do objeto transaction antes de ser enviado ao pagarme.)
+      SPLIT RULES 11 - Em percentage, vamos arredondar a operação, que será o valor total que a petshop tem pra receber - nossa comissão de marketplace. 
+      Vamos também dividir isso pelo valor total, desta forma, sabemos quanto do valor total da transação esta petshop irá receber. Exemplo 70/100, vai dar 0.7, a gente multiplica isso por 100 pra termos o percentual, então o percentage será 70, ela vai receber 70% do valor total da transação.
+      SPLIT RULES 12 - Nesta etapa se fizermos uma simulação, a gente vai ver que o objeto transaction vai ter lá os petshops, e o percentual que cada um tem direito sobre a venda total.
+      Mas se a gente simular uma compra, abrir o console, e somar o percentage de todas as lojas que venderam naquela transação, não vai dar 100%. Isso é pq a diferença deste valor para 100, é justamente nossa comissão de marketplace. 
+      Então nesta etapa vamos criar um recebedor lá na pagarme, que seremos nós. */
+      result.push({
+        recipient_id: products[0].petshop_id.recipient_id,
+        percentage: Math.floor(((totalValuePerPetshop - totalFee) / total) * 100 ),
+        liable: true,
+        charge_processing_fee: true,
+      })
+    })
+
+    /* SPLIT RULES 14 
+    Nesta etapa vamos somar de fato os percentuais de participação nas vendas de cada petshop, e salvar no objeto totalPetshopsPercentage 
+    O método reduce é um loop executado em uma array pra somar todos os valores dela. Inicia com um valor zero, acessa o objeto recipient, e soma o percentage dele no total, até ter somado todos.
+    O método parseFloat transforma uma string em float. */
+    const totalPetshopsPercentage = result.reduce((total, recipient) => {
+      return total + parseFloat(recipient.percentage);
+    },0)
+
+     /* SPLIT RULES 16 - Aqui vamos adicionar nosso percentual de comissão de dono do marketplace.
+     Pegamos tudo que tem no defaultRecipient.
+     Onde tem o percentage do objeto defaultRecipient a gente vai sobreescrever com o cálculo a seguir,
+     A nossa comissão vai ser o resto da transação. 
+     O valor a ser recebido pelas petshops soma 90%, então vai ficar 100 - 90, dá 10, então nossa comissão será 10%.
+     A Lógica é feita desta forma, pois é assim que o pagarme espera receber no endpoint create split transaction.*/
+    result.push({
+      ...defaultRecipient,
+      percentage: 100 - totalPetshopsPercentage
+    })
+
+    return result;
   }
 
   /* Checkout 17 - 
@@ -95,7 +184,8 @@ const Checkout = () => {
         unit_price: product.preco.toFixed(2).toString().replace('.', ''),
         quantity: 1,
         tangible: true
-      }))
+      })),
+      split_rules: getSplitRules()
     })
 
   },[total])
@@ -165,7 +255,7 @@ const Checkout = () => {
               </div>
 
               <div className="col-6">
-                  <input type="date" placeholder="VALIDADE" className="form-control form-control-lg"
+                  <input type="text" placeholder="VALIDADE" className="form-control form-control-lg"
                   onChange={(e) => setTransaction({ ...transaction, card_expiration_date: e.target.value })}/>
               </div>
 

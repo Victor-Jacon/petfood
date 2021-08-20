@@ -4,7 +4,7 @@ import types from './types'
 
 /* REDUX 1 - Crio o arquivo reducer.js; Crio a variável INITIAL_STATE; Coloco INITIAL_STATE como valor padrão inicial do redux [padrão]; Escuta as actions da ui para mandar para a store, tipo um event handler; O state é o estado inicial que ele vai inicializar, igual o estado inicial do useState, se for uma array, quais os itens iniciais? Se for uma string, vai ter um valor pre-definido? é Essa a lógica */
 const INITIAL_STATE = {
-  customer: {},
+  /* SPLIT RULES 17 - Nesta linha havia um objeto customer. Ele foi movido para dentro do objeto transaction. Como o objeto customer está aninhado dentro de transaction, a gente teve que alterar na action SET_CUSTOMER, de draft.customer para draft.transaction.customer 
   
   /* REDUX SAGA 16 - Definimos um valor incial para o objeto petshops, como vai ser uma listagem de petshops que vai vir do nosso mongoDB, então a gente coloca dentro de uma array, e o valor inicial dele será vazio. */
   petshops: [],
@@ -19,8 +19,49 @@ const INITIAL_STATE = {
 
   /* PETSHOP QUERY 8 */
   petshop: {},
-  cart: []
-}
+  cart: [],
+
+  /* SPLIT RULES 8 - Aqui definimos quanto será nossa comissão. Desta forma a mesma comissão se aplicará a todos os parceiros. */ 
+  transactionFee: 0.1,
+  
+  /* SPLIT RULES 13 - Precisamos receber nossa parte da comissão como marketplace.
+  Criamos manualmente nossa conta de recebedor no portal do pagarme com os dados da nossa empresa. 
+  Agora temos este objeto abaixo que é o defaultRecipient, que somos nós. */
+  defaultRecipient : {
+    recipient_id: 're_cksiw964005ty0h9tq6lh4jh4',
+    percentage: 10,
+    liable: true,
+  },
+  
+  /* SPLIT RULES 15 - Criamos o objeto transaction. Este é o objeto que vamos pegar no redux saga, e enviar para o pagarme no final da compra do cliente.
+  A gente copia a estrutura completa que o pagarme espera receber no endpoint create split transaction(copiamos da documentacao do pagarme)
+  E a gente exclui alguns dados pra o initial state deles ser em branco.
+  Alguns outros dados como o objeto customer a gente já vai ter porque o cliente vai ter preenchido os dados dele.
+  O shipping, o items e o split rules tb já temos, então ficará somente a carcaça, sem os objetos/arrays filhas nem nada, deixamos em branco. */
+  transaction: {
+    amount: 0,
+    card_number: "",
+    card_cvv: "",
+    card_expiration_date: "",
+    card_holder_name: "",
+    customer: {},
+    billing: {
+      name: "Petfood LTDA",
+      address: {
+        country: "br",
+        state: "sp",
+        city: "cotia",
+        neighborhood: "rio cotia",
+        street: "Rua matrix",
+        street_number: "9999",
+        zipcode: "06714360"
+      }
+    },
+    shipping: {},
+    items: [],
+    split_rules: [],
+  },
+};
 
 function shop (state = INITIAL_STATE, action) {
 
@@ -29,7 +70,7 @@ function shop (state = INITIAL_STATE, action) {
     case types.SET_CUSTOMER: {
       /* Redux 11 + Immer 2; 1º paramêtro: nosso estado; 2º parâmetro: copia exata do nosso state (antes de sobreescrevermos) */
       return produce(state, (draft) => {
-          draft.customer = action.customer;
+          draft.transaction.customer = action.customer;
       })
     }
 
@@ -78,6 +119,13 @@ function shop (state = INITIAL_STATE, action) {
         } else {
           draft.cart.push(action.product);
         }
+      })
+    }
+
+    /* SPLIT RULES 20 - Essa action vai pegar o que a gente já tem no objeto transaction (initial_state do objeto transaction que está no topo deste reducer), e vai mesclar com o que vier da action. */
+    case types.SET_TRANSACTION: {
+      return produce(state, (draft) => {
+        draft.transaction = {...draft.transaction, ...action.transaction}; 
       })
     }
 

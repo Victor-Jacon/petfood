@@ -40,5 +40,11 @@
   {
     "Quem é responsável por realizar as requisições no redux?": "O redux saga faz a requisição (get), e o reducer seta um valor inicial + salva estes dados da requisição do redux saga no objeto, atualizando seu estado.",
     "Meu front está tentando renderizar o DOM antes de receber os dados do servidor, e por isso, os objetos que eu estava esperando pra popular o front estão dando erro de variavel undefined, o que fazer?":"Coloca o optional chaining, exemplo: petshop.produtos?; o ponto de interrogação é o optional chaining, ele permite que o objeto seja undefined sem dar erro, ai o front carrega, e depois os dados da requisição chegam, e populam o front. "
+  },
+  "Petfood - Parte 8":
+  {
+    "Como eu faço pra ver o objeto JSON que meu front está gerando para enviar para um endpoint?":"Coloco um console.log(nomeObjeto) no botão que dispara a ação. Salva e volta lá no seu front. Faz o fluxo. Botão direito, inspecionar, clica em console. O objeto estará ali. BOtão direito no objeto para copiar ele. Cola este objeto em um arquivo.json que vc tenha no seu projeto, e compare com o padrão de objeto json que o endpoint espera. Se tiver diferenças, procure no código, até ficar exatamente da mesma como o endpoint espera.",
+    "Na minha requisição eu recebo como resposta data is undefined, ou que algum objeto meu não existe, o que fazer?":"Você precisa verificar na sua rota se você está passando o objeto como parâmetro. Pense no fluxo dos dados, e onde este objeto precisa passar. verifique cada etapa. SE é uma requisição api o problema provavelmente está na pasta services. ",
+    "Eu preencho os campos de input do meu front, e mesmo assim, meu objeto json chega vazio lá no final do fluxo. O que pode ser?":"Primeiro, precisamos ver se os inputs estão enviando o que o usuário digita para o useState ou store corretos. Depois isso, é necessário ver se o useState está configurado corretamente, se o objeto e as arrays estão na sintaxe correta por exemplo. Se estiver sendo usada uma store do redux, é necessário checar os types, actions e reducer pra ver se tudo está dentro do fluxo. É preciso verificar se o dispatch está sendo realizado, se o objeto está sendo extraido da store. Esse é o primeiro lugar onde costuma dar erro."
   }
 }

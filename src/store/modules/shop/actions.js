@@ -43,3 +43,13 @@ export function setPetshop(petshop) {
 export function toggleCartProduct(product) {
     return { type: types.TOGGLE_CART_PRODUCT, product }
 }
+
+// SPLIT RULES 19
+export function setTransaction(transaction) {
+    return { type: types.SET_TRANSACTION, transaction }
+}
+
+// SPLIT RULES 29 - Nosso reducer não vai escutar este cara aqui, quem vai escutar ele será o saga.
+export function makePruchase() {
+    return { type: types.MAKE_PURCHASE }
+}

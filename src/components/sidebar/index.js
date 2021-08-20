@@ -65,8 +65,9 @@ const Sidebar = () => {
           <b className="d-inline-block">Total</b>
           <h3>R$ {total.toFixed(2)}</h3>
         </div>
-        {/* Checkout 3 */}
-        <button onClick={() => history.push('/checkout')} className="btn btn-block btn-lg btn-primary rounded-0 h-50 align-items-center">
+        {/* Checkout 3 - history.push('/checkout')*/}
+        {/* split rules 25 - A gente tinha colocado por engano que nesta etapa o cara seria enviado para o checkout, mas na verdade, ele precisa fazer o cadastro primeiro, e depois ir pro checkout. */}
+        <button onClick={() => history.push('/cadastro')} className="btn btn-block btn-lg btn-primary rounded-0 h-50 align-items-center">
           Finalizar Compra
         </button>
       </div>
