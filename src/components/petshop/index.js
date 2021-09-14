@@ -8,7 +8,7 @@ import './styles.css'
 /* REDUX COM FRONT 4 - 
 Os dados do objeto petshop estão vindo do redux. A gente passou o objeto petshop como props para nosso componente lá no front. Agora aqui no código do componente, vamos PREPARAR o componente para ele receber este objeto. 
 O src do nosso img estava estático, era URL da web. Como agora temos o objeto vindo do mongoDB vamos substituir de "link" por {petshop.propriedadeSalvaNoMongo} neste caso é o logo 
-Nesta etapa de trocar dados estáticos por dados vindos do banco, é legal abrir o redux dev tools e ir olhando os dados a hierarquia dos dados, se é objeto, array, qual o nome foi dado, pra conseguir consumir certinho aqui no componente, e como consequência, aparecer certinho no front. Pq a gente não está consumindo direto do banco de dados, o dado passa primeiro pela store a gente de chegar aqui, então a "fonte da verdade" não é o banco, e sim a store. */
+Nesta etapa de trocar dados estáticos por dados vindos do banco, é legal abrir o redux dev tools e ir olhando os dados a hierarquia dos dados, se é objeto, array, qual o nome foi dado, pra conseguir consumir certinho aqui no componente, e como consequência, aparecer certinho no front. Pq a gente não está consumindo direto do banco de dados, o dado passa primeiro pela store antes de chegar aqui, então a "fonte da verdade" não é o banco, e sim a store. */
 const Petshop = ({ petshop }) => {
   const dispatch = useDispatch()
   const { petshopMapSelected } = useSelector(state => state.shop); // Petshop selecionada 3 - Implementar
